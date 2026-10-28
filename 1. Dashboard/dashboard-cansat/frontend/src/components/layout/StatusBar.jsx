@@ -15,6 +15,7 @@ export default function StatusBar() {
     ["Tiempo", last ? `${last.t.toFixed(1)} s` : "—"],
     ["Fase", last?.phase ?? "Pendiente"],
     ["Pérdida", `${loss.toFixed(1)} %`],
+    ["Señal", last?.rssi != null ? `${last.rssi} dBm` : "—"],
   ];
 
   return (

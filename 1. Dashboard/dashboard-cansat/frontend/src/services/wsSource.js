@@ -20,6 +20,12 @@ export default class WsSource extends TelemetrySource {
     this.#connect();
   }
 
+  send(text) {
+    if (this.#ws?.readyState !== WebSocket.OPEN) return false;
+    this.#ws.send(text);
+    return true;
+  }
+
   stop() {
     this.#stopped = true;
     clearTimeout(this.#timer);

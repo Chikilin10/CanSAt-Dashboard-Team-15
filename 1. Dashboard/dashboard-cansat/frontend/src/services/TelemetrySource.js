@@ -27,6 +27,11 @@ export default class TelemetrySource {
     this.#statusListeners.forEach((cb) => cb(status));
   }
 
+  // Envía un comando al CanSat. Devuelve true si salió. La fuente simulada no tiene a quién enviarlo.
+  send() {
+    return false;
+  }
+
   start() {
     throw new Error("start() debe implementarse en la subclase");
   }

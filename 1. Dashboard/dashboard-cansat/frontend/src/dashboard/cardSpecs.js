@@ -6,7 +6,12 @@ export const CARD_SPECS = [
   new CardSpec({ id: "vel", type: "spark", field: "vel_v", label: "Velocidad vertical", unit: "m/s", source: "Calculado (C)", color: "#6f42c1" }),
   new CardSpec({ id: "temp", type: "number", field: "temp", label: "Temperatura", unit: "°C", source: "Sensor" }),
   new CardSpec({ id: "pressure", type: "number", field: "pressure", label: "Presión", unit: "hPa", source: "Sensor" }),
-  new CardSpec({ id: "volt", type: "progress", field: "volt", label: "Batería", unit: "V", source: "Sensor", decimals: 2, max: 8.4 }),
+  new CardSpec({
+    id: "volt", type: "progress", field: "volt", label: "Batería 9V", unit: "V", source: "Sensor", decimals: 2, max: 9.6,
+    // El regulador a 5V necesita ~6.5 V como mínimo; una 9V alcalina cae rápido bajo carga.
+    statusFn: (l) =>
+      l?.volt == null ? {} : l.volt < 6.8 ? { status: "alert", badgeText: "Baja" } : l.volt < 7.6 ? { status: "warn", badgeText: "Media" } : {},
+  }),
   new CardSpec({
     id: "descent", type: "gauge", field: "descent_rate", label: "Velocidad de caída",
     unit: "m/s", source: "Calculado (C)", min: 0, max: 40, okRange: [8, 12],

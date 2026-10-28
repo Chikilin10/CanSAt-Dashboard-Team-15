@@ -62,6 +62,10 @@ export default class TelemetryStore {
     this.#source.stop();
   }
 
+  sendCommand(cmd) {
+    return this.#source.send(cmd);
+  }
+
   pause() {
     this.#source.stop();
     this.#status = "paused";

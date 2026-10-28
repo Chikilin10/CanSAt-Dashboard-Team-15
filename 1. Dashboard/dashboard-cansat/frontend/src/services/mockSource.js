@@ -85,7 +85,7 @@ export default class MockSource extends TelemetrySource {
       gx: +noise(6).toFixed(1),
       gy: +noise(6).toFixed(1),
       gz: +noise(6).toFixed(1),
-      volt: +(7.4 - this.#n * 0.0004).toFixed(2),
+      volt: +(9.3 - this.#n * 0.0006).toFixed(2),
       rotor_deployed: phase === "autogyro" || landed,
       sec_dist: landed ? 4.2 : null,
       sec_bearing: landed ? 135 : null,
